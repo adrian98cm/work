@@ -1,14 +1,21 @@
 import React, { Component, useState } from 'react';
-import './App.css';
-import Person from './Person/Person';
 
+import Person from './Person/Person';
+import classes from './App.module.css'
 
 class App extends Component {
   state = {
     persons: [
       { id: 'asdf1', name: 'Adri', age: 21 },
       { id: 'asdf2', name: 'Dimitri', age: 28 },
-      { id: 'asdf3', name: 'Mitroslav', age: 38 }
+      { id: 'asdf3', name: 'Mitroslav', age: 38 },
+      { id: 'asdf4', name: 'Adri', age: 21 },
+      { id: 'asdf5', name: 'Dimitri', age: 28 },
+      { id: 'asdf6', name: 'Mitroslav', age: 38 },
+      { id: 'asdf7', name: 'Adri', age: 21 },
+      { id: 'asdf8', name: 'Dimitri', age: 28 },
+      { id: 'asdf9', name: 'Mitroslav', age: 38 }
+      
 
     ],
     otherState: 'some other value',
@@ -32,8 +39,6 @@ class App extends Component {
       ...this.state.persons[personIndex]
     };
 
-    //const person = Object.assign({}, this.state.persons[personIndex]);
-
 
     person.name = event.target.value;
 
@@ -52,20 +57,9 @@ class App extends Component {
 
   render() {
 
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
-
     let persons = null;
+    let btnClass = '';
+
 
     if (this.state.showPersons) {
       persons = (
@@ -81,29 +75,23 @@ class App extends Component {
         </div>
       );
 
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
-
+      btnClass = classes.Red;
     }
 
-    const classes = [];
+    const assignedClasses = [];
     if (this.state.persons.length <= 2) {
-      classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     }
 
     return (
-        <div className="App">
+        <div className={classes.App}>
           <h1>HI, I'M LEARNING</h1>
-          <p className={classes.join(' ')}>This is working!</p>
-          <button className="button"
-           
-            onClick={this.togglePersonsHandler}>Switch Name
+          <p className={assignedClasses.join(' ')}>This is working!</p>
+          <button className={btnClass}  onClick={this.togglePersonsHandler}>
+              Switch Name
             </button>
           {persons}
         </div>
