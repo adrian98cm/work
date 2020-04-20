@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
 import classes from './App.module.css'
 
 class App extends Component {
